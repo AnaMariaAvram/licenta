@@ -1,0 +1,64 @@
+﻿@model ProjectDaw.Models.Product
+@{
+    ViewBag.Titlu = "Editeaza un produs";
+}
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+     @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(m => m.ProductId)
+    <br />
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Title", "Titlu Produs")
+    <br />
+    @Html.TextBox("Title", null, new { @class = "form-control" })
+        
+    @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("Description", "Descriere Produs")
+    <br />
+    @Html.TextArea("Description", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("ImageFile", "ImageFile")
+    <br />
+    <input type="file" runat="server" id="MyImage" name="ImageFile" required />
+    @Html.Hidden("ImagePath", "not_null", new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.Label("Price", "Pret Produs")
+    <br />
+    @Html.TextBox("Price", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("Rating", "Rating Produs")
+    <br />
+    @Html.TextBox("Rating", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    @Html.Label("Review", "Review Produs")
+    <br />
+    @Html.TextArea("Review", null, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Review, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <label>Selectati categoria</label>
+    @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories,
+    "Value", "Text"),
+    "Selectati categoria", new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Modifica produsul</button>
+
+}
