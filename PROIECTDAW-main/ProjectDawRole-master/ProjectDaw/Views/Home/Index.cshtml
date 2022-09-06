@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="jumbotron">
+            <h1 class="font-roboto">@ViewBag.FirstProduct.Title</h1>
+            <p class="truncate font-montserrat">
+                @ViewBag.FirstProduct.Description
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @foreach (var product in ViewBag.Products)
+    {
+        <div class="col-md-6 row-style">
+            <h2 class="font-roboto">@product.Title</h2>
+            <p class="truncate font-montserrat">
+                @product.Description
+            </p>
+            <a class="btn btn-sm btn-success"
+               href="/Account/Register/registerLink">Adauga in cos</a>  
+        </div>
+    }
+</div>
